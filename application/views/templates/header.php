@@ -104,7 +104,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<a href='<?php echo site_url('news'); ?>'>All News</a> | 
 				<a href='<?php echo site_url('about'); ?>'>About Page</a> | 
 				<a href='<?php echo site_url(''); ?>'>Home Page</a> |
-				<a href='<?php echo site_url('logout'); ?>'>Logout</a> |
+				<?php if ($nick_l == '---') { ?>
+				<a href='<?php echo site_url('login'); ?>'><b>Login</b></a> 
+				<?php } else { ?>
+				<a href='<?php echo site_url('logout'); ?>'>Logout</a> | Hi: <?php echo $nick_l; ?>!
+				<?php } ?>
 			</p>
 			<div id="body">
 				<h1>Home > <?php echo $title; ?> ></h1>			

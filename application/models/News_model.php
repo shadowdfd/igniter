@@ -33,7 +33,6 @@ class News_model extends CI_Model {
 }
 		public function _check_login()
 		{
-			$this->load->library('auth');
 			$this->authorised = $this->auth->isAuthorised() && $this->auth->hasAccess('news');
 		}
 }

@@ -285,6 +285,26 @@ class Auth
 			return false;
 		}
 	}
+	public function logout()
+        {
+			$session_data = array(
+					$this->CI->config->item('auth_passw') =>'',
+					$this->CI->config->item('auth_nick') => ''
+				);
+			$this->CI->session->set_userdata($session_data);
+			$this->authorised = false;
+//			session_start() ;
+//			session_unset();
+			
+			// If it's desired to kill the session, also delete the session cookie.
+			// Note: This will destroy the session, and not just the session data!
+//			if (isset($_COOKIE[session_name()])) {
+//				setcookie(session_name(), '', time()-42000, '/');
+//			}
+					
+			$this->CI->session->sess_destroy();
+			redirect('login');
+		}
 	
 }	
 ?>

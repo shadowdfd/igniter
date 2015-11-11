@@ -9,7 +9,7 @@ class Login extends CI_Controller {
                  $this->load->helper('url_helper');
 				 if($this->auth->isAuthorised() == true)
 					{
-						redirect('home'); //Контроллер авторизации
+						//redirect('home'); //Контроллер авторизации
 					}
 				
         }
@@ -18,6 +18,10 @@ class Login extends CI_Controller {
                 $this->load->helper('form');
 				
 				$data['title'] = 'Login';
+						if ($this->auth->getUser()['nick'])
+		{
+		$data['nick_l'] = $this->auth->getUser()['nick'];
+		} else $data['nick_l'] = "---";
 				
 				if ( $this->input->post( 'login' ) ) 
 				{ 
@@ -40,13 +44,9 @@ class Login extends CI_Controller {
 						$this->load->view('templates/footer');
 				}
         }
-		public function logout()
+		public function logout_l()
         {
-			$session_data = array(
-					$this->CI->config->item('auth_passw') => '',
-					$this->CI->config->item('auth_nick') => ''
-				);
-			$this->session->set_userdata($session_data);
-			redirect('login');
+		$this->auth->logout();
 		}
+		
 }		

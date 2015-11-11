@@ -25,6 +25,10 @@ class News extends CI_Controller {
 				{	
 				$data['news'] = $this->news_model->get_news();
 				$data['title'] = 'News archive';
+						if ($this->auth->getUser()['nick'])
+		{
+		$data['nick_l'] = $this->auth->getUser()['nick'];
+		} else $data['nick_l'] = "---";
 				
 				$this->load->helper('access_helper');
 				
@@ -43,6 +47,10 @@ class News extends CI_Controller {
 					}
 
 				$data['title'] = $data['news_item']['title'];
+						if ($this->auth->getUser()['nick'])
+		{
+		$data['nick_l'] = $this->auth->getUser()['nick'];
+		} else $data['nick_l'] = "---";
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('news/view', $data);
@@ -54,6 +62,10 @@ class News extends CI_Controller {
 				$this->load->library('form_validation');
 
 				$data['title'] = 'Create a news item';
+						if ($this->auth->getUser()['nick'])
+		{
+		$data['nick_l'] = $this->auth->getUser()['nick'];
+		} else $data['nick_l'] = "---";
 
 				$this->form_validation->set_rules('title', 'Title', 'required');
 				$this->form_validation->set_rules('text', 'Text', 'required');

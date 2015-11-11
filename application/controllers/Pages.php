@@ -10,7 +10,10 @@ class Pages extends CI_Controller {
 			}
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
-		
+		if ($this->auth->getUser()['nick'])
+		{
+		$data['nick_l'] = $this->auth->getUser()['nick'];
+		} else $data['nick_l'] = "---";
 		$this->load->helper('url_helper');
 		
         $this->load->view('templates/header', $data);
